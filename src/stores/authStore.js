@@ -5,7 +5,7 @@ import { login } from "../services/authService";
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: null,
-    token: sessionStorage.getItem("jwt") || null, // Asegúrate que sea localStorage y no sessionStorage si lo deseas persistente
+    token: sessionStorage.getItem("jwt") || null, // Asegúrate que sea sessionStorage y no sessionStorage si lo deseas persistente
   }),
   actions: {
     async iniciarSesion(username, password, dni, email) {
@@ -16,7 +16,7 @@ export const useAuthStore = defineStore("auth", {
 
         this.token = response.data.jwt;
         this.user = response.data.user; // Asumiendo que el backend devuelve 'user'
-        sessionStorage.setItem("jwt", this.token); // Si el token lo guardas en localStorage, que sea coherente
+        sessionStorage.setItem("jwt", this.token); // Si el token lo guardas en sessionStorage, que sea coherente
         console.log("Inicio de sesión exitoso:", response.data); // Para depuración
       } catch (error) {
         console.error(

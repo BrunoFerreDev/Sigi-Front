@@ -11,10 +11,21 @@
     <div class="sidebar-content flex flex-col justify-start px-4">
       <span class="font-bold">Opciones</span>
       <ul class="flex flex-col items-start justify-start mx-2 gap-2 my-3">
-        <li><a href="/cursando">Cursando Actualmente</a></li>
-        <li><a href="/materias-aprobadas">Asignaturas Aprobadas</a></li>
-        <li><a href="/regulares">Asignaturas Regulares</a></li>
-        <li><a href="/finales">Inscripciones a Finales</a></li>
+        <li>
+          <a href="/cursando">Cursando Actualmente</a>
+        </li>
+        <li>
+          <a href="/materias-aprobadas">Asignaturas Aprobadas</a>
+        </li>
+        <li>
+          <a href="/regulares">Asignaturas Regulares</a>
+        </li>
+        <li>
+          <a href="/finales">Inscripcion a Finales</a>
+        </li>
+        <li>
+          <a href="/disponibles">Disponibles</a>
+        </li>
       </ul>
       <span class="font-bold">Constancias</span>
       <ul class="flex flex-col items-start justify-start mx-2 gap-5 my-3">
@@ -25,8 +36,8 @@
       <span class="font-bold">Cuenta</span>
       <ul class="flex flex-col items-start justify-start mx-2 gap-3 my-3">
         <li>
-          <a class="inline-flex items-center gap-2 w-full" href="/cuenta"
-            ><IconUserFilled />Perfil</a
+          <a class="inline-flex items-center gap-2 w-full" href="/cuenta">
+            <IconUserFilled />{{ isLogin ? "Cuenta" : "Iniciar Sesion" }}</a
           >
         </li>
         <li>
@@ -63,12 +74,23 @@ export default {
     IconLogout2,
   },
   data() {
-    return {};
+    return {
+      isLogin: false,
+    };
   },
   methods: {
     logout() {
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("jwt");
       window.location.href = "/";
+    },
+  },
+  computed: {
+    checkLogin() {
+      if (sessionStorage.getItem("jwt")) {
+        this.isLogin = true;
+      } else {
+        this.isLogin = false;
+      }
     },
   },
 };
@@ -81,6 +103,6 @@ span {
   @apply font-bold text-lg;
 }
 a {
-  @apply flex flex-row items-center bg-slate-100 h-8 px-3 rounded-lg w-[200px] hover:bg-slate-300;
+  @apply flex flex-row items-center bg-slate-100 h-8 px-3 rounded-lg w-[210px] hover:bg-slate-300;
 }
 </style>

@@ -1,9 +1,6 @@
 <template>
-      <div class="container mx-auto mt-5">
-        <table>
-            <caption class="text-center text-2xl mb-5 font-bold">
-                Inscripción Finales
-            </caption>
+      <div class="container mx-auto mt-5 max-h-[700px] overflow-x-auto">
+        <table class="w-3/4 mb-3 mx-auto">
             <thead>
                 <tr>
                     <th>#</th>

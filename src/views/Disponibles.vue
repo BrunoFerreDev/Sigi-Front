@@ -1,7 +1,7 @@
 <template>
   <div
     class="container mx-auto flex w-full max-h-[700px] overflow-x-auto"
-    v-if="!alumnoStore.loading && alumnoStore.cursando.length > 0"
+    v-if="!alumnoStore.loading && alumnoStore.disponibles.length > 0"
   >
     <table class="w-3/4 mx-auto mt-4 max-h-[300px] overflow-auto">
       <thead>
@@ -9,13 +9,21 @@
           <th>#</th>
           <th>Asignatura</th>
           <th>Estado</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(curso, index) in alumnoStore.cursando" :key="index">
+        <tr v-for="(asignatura, index) in alumnoStore.disponibles" :key="index">
           <td>{{ index + 1 }}</td>
-          <td>{{ curso.materia }}</td>
-          <td class="capitalize">{{ curso.condicion }}</td>
+          <td>{{ asignatura.asginatura }}</td>
+          <td class="capitalize">{{ asignatura.anio }}</td>
+          <td>
+            <button
+              class="bg-green-600 hover:bg-green-800 text-white py-2 px-4 rounded-lg"
+            >
+              Inscribirse
+            </button>
+          </td>
         </tr>
       </tbody>
       <tfoot>
@@ -34,13 +42,11 @@
   </div>
 </template>
 <script setup>
-import { useAlumnoStore } from "@/stores/alumnoStore"; // ✅ Importación correcta
-import { onMounted } from "vue"; // ✅ Importación correcta del hook onMounted
-
-const alumnoStore = useAlumnoStore(); // ✅ Inicialización del store
+import { useAlumnoStore } from "@/stores/alumnoStore";
+import { onMounted } from "vue";
+const alumnoStore = useAlumnoStore();
 
 onMounted(async () => {
-  await alumnoStore.cargarAsignaturas(); // ✅ Llamada a la acción/método del store
+  await alumnoStore.cargarAsignaturas();
 });
 </script>
-

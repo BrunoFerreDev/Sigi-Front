@@ -1,15 +1,12 @@
 <template>
-  <div class="container mx-auto mt-5">
+  <div class="container mx-auto mt-5 max-h-[700px]  overflow-x-auto">
     <div
-      class="flex justify-center items-center h-[300px] mx-auto"
+      class="flex gap-4 justify-center items-center mx-auto"
       v-if="loading"
     >
       <Loader />
     </div>
-    <table v-else class="w-3/4 mx-auto mt-4 max-h-[300px] overflow-auto">
-      <caption class="text-center text-2xl mb-5 font-bold">
-        Asignaturas Regulares
-      </caption>
+    <table v-else class="w-3/4 mx-auto max-h-[300px]">
       <thead>
         <tr>
           <th>#</th>

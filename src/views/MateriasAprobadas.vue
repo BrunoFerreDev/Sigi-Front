@@ -1,15 +1,9 @@
 <template>
-  <div class="container mx-auto mt-5 flex justify-center">
-    <div
-      class="flex justify-center items-center h-[300px] mx-auto"
-      v-if="loading"
-    >
+  <div class="container mx-auto mt-5 flex justify-center max-h-[700px] overflow-x-auto ">
+    <div class="flex justify-center items-center mx-auto" v-if="loading">
       <Loader />
     </div>
     <table v-else class="w-3/4 mb-3">
-      <caption class="text-center text-xl mb-5 font-bold">
-        Materias Aprobadas
-      </caption>
       <thead>
         <tr>
           <th>#</th>
@@ -18,12 +12,13 @@
           <th>Condición</th>
         </tr>
       </thead>
-      <tbody
-        v-if="asignaturas.length > 0"
-        v-for="(asignatura, index) in asignaturas"
-        :key="asignatura.id"
-      >
-        <tr class="uppercase text-lg">
+      <tbody >
+        <tr
+          v-if="asignaturas.length > 0"
+          v-for="(asignatura, index) in asignaturas"
+          :key="asignatura.id"
+          class="hover:bg-gray-200 uppercase"
+        >
           <td>{{ index + 1 }}</td>
           <td>{{ asignatura.materia }}</td>
           <td>{{ asignatura.nota }}</td>
@@ -90,3 +85,4 @@ export default {
   },
 };
 </script>
+

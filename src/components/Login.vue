@@ -55,7 +55,7 @@ export default {
         .then((result) =>{
           if(result){
             console.log(result);
-            localStorage.setItem("token", result.jwt);
+            sessionStorage.setItem("token", result.jwt);
             window.location.href = "/cuenta";
           }
         })

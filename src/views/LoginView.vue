@@ -1,12 +1,12 @@
 <template>
-  <div class="flex mx-auto items-center justify-center m-2">
+  <div class="flex mx-auto items-center justify-center m-2 h-full">
     <form class="form" @submit.prevent="iniciarSesion">
       <div class="flex-column">
-        <label>Username </label>
+        <label>Nombre de Usuario </label>
       </div>
       <div class="inputForm">
         <input
-          placeholder="Enter your Username"
+          placeholder="Ingrese su Nombre de Usuario"
           class="input"
           type="text"
           v-model="username"
@@ -17,7 +17,7 @@
       </div>
       <div class="inputForm">
         <input
-          placeholder="Enter your Email"
+          placeholder="Ingrese su Email"
           class="input"
           type="text"
           v-model="email"
@@ -28,24 +28,24 @@
       </div>
       <div class="inputForm">
         <input
-          placeholder="Enter your D.N.I"
+          placeholder="Ingrese su D.N.I"
           class="input"
           type="password"
           v-model="dni"
         />
       </div>
       <div class="flex-column">
-        <label>Password </label>
+        <label>Contraseña </label>
       </div>
       <div class="inputForm">
         <input
-          placeholder="Enter your Password"
+          placeholder="Ingrese su Contraseña"
           class="input"
           type="password"
           v-model="password"
         />
       </div>
-      <button class="button-submit" type="submit">Sign In</button>
+      <button class="button-submit" type="submit">Iniciar Sesion</button>
     </form>
   </div>
 </template>

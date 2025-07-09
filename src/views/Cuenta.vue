@@ -94,6 +94,8 @@ export default {
             console.log(error);
           })
           .finally(() => {
+            console.log(sessionStorage.getItem("jwt"));
+            
             this.login = false;
           });
       }
@@ -101,4 +103,4 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+

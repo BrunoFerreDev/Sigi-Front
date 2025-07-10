@@ -17,7 +17,7 @@ export const useAuthStore = defineStore("auth", {
         this.token = response.data.jwt;
         this.user = response.data.user; // Asumiendo que el backend devuelve 'user'
         sessionStorage.setItem("jwt", this.token); // Si el token lo guardas en sessionStorage, que sea coherente
-        console.log("Inicio de sesión exitoso:", response.data); // Para depuración
+        ("Inicio de sesión exitoso:", response.data); // Para depuración
       } catch (error) {
         console.error(
           "Error al iniciar sesión:",

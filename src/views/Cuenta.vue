@@ -46,7 +46,7 @@
 
       <div class="flex flex-row gap-5">
         <p class="mr-5 w-32">Estado:</p>
-        <p class="bg-gray-200 rounded-md min-w-44 px-2">{{ persona.estado }}</p>
+        <p :class="persona.estado ? 'bg-green-200 rounded-md min-w-44 px-2' : 'bg-red-200 rounded-md min-w-44 px-2'">{{ persona.estado ? "Activo" : "Inactivo" }}</p>
       </div>
     </section>
   </div>
@@ -86,15 +86,15 @@ export default {
         axios
           .request(config)
           .then((response) => {
-            console.log(JSON.stringify(response.data));
+            (JSON.stringify(response.data));
             this.persona = response.data;
             this.loginF = false;
           })
           .catch((error) => {
-            console.log(error);
+            (error);
           })
           .finally(() => {
-            console.log(sessionStorage.getItem("jwt"));
+            (sessionStorage.getItem("jwt"));
             
             this.login = false;
           });

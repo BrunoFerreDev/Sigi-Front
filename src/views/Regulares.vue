@@ -1,9 +1,6 @@
 <template>
-  <div class="container mx-auto mt-5 max-h-[700px]  overflow-x-auto">
-    <div
-      class="flex gap-4 justify-center items-center mx-auto"
-      v-if="loading"
-    >
+  <div class="container mx-auto mt-5 max-h-[700px] overflow-x-auto">
+    <div class="flex gap-4 justify-center items-center mx-auto" v-if="loading">
       <Loader />
     </div>
     <table v-else class="w-3/4 mx-auto max-h-[300px]">
@@ -11,13 +8,14 @@
         <tr>
           <th>#</th>
           <th>Asignatura</th>
-          <th>Tipo de asignatura</th>
-          <th>Año</th>
+          <th>Estado</th>
+          <th>Nota</th>
         </tr>
       </thead>
       <tbody
         v-if="asignaturas.length > 0"
         v-for="(asignatura, index) in asignaturas"
+        class="hover:bg-gray-200 uppercase"
       >
         <tr class="uppercase">
           <td>{{ index + 1 }}</td>
@@ -71,11 +69,10 @@ export default {
         axios
           .request(config)
           .then((response) => {
-            console.log(JSON.stringify(response.data));
+           console.log(response.data);
             this.asignaturas = response.data;
           })
           .catch((error) => {
-            console.log(error);
           })
           .finally(() => {
             this.loading = false;

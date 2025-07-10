@@ -28,7 +28,7 @@ export const useAlumnoStore = defineStore("alumno", {
         this.aprobadas = aprobadas.data;
         this.regulares = regulares.data;
         this.disponibles = disponibles.data;
-        console.log(
+        (
           "Asignaturas cargadas:",
           this.cursando,
           this.aprobadas,

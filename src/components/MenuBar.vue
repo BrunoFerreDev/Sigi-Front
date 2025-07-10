@@ -1,4 +1,5 @@
 <template>
+  {{ login }}
   <aside
     class="sidebar w-64 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-indigo-500"
   >
@@ -9,8 +10,11 @@
       </div>
     </div>
     <div class="sidebar-content flex flex-col justify-start px-4">
-      <span class="font-bold">Opciones</span>
-      <ul class="flex flex-col items-start justify-start mx-2 gap-2 my-3">
+      <span class="font-bold" v-if="isLogin">Opciones</span>
+      <ul
+        v-if="isLogin"
+        class="flex flex-col items-start justify-start mx-2 gap-2 my-3"
+      >
         <li>
           <a href="/cursando">Cursando Actualmente</a>
         </li>
@@ -36,7 +40,10 @@
       <span class="font-bold">Cuenta</span>
       <ul class="flex flex-col items-start justify-start mx-2 gap-3 my-3">
         <li>
-          <a class="inline-flex items-center gap-2 w-full" href="/cuenta">
+          <a
+            class="inline-flex items-center gap-2 w-full"
+            :href="isLogin ? '/cuenta' : '/'"
+          >
             <IconUserFilled />{{ isLogin ? "Cuenta" : "Iniciar Sesion" }}</a
           >
         </li>
@@ -85,12 +92,13 @@ export default {
     },
   },
   computed: {
-    checkLogin() {
+    login() {
       if (sessionStorage.getItem("jwt")) {
         this.isLogin = true;
       } else {
         this.isLogin = false;
       }
+      this.isLogin;
     },
   },
 };

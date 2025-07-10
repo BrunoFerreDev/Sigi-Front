@@ -8,15 +8,17 @@
         <tr>
           <th>#</th>
           <th>Asignatura</th>
-          <th>Estado</th>
+          <th>Año</th>
+          <th>Tipo</th>
           <th>Acciones</th>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="(asignatura, index) in alumnoStore.disponibles" :key="index">
+      <tbody class="text-center ">
+        <tr v-for="(asignatura, index) in alumnoStore.disponibles" :key="index" class="hover:bg-gray-200">
           <td>{{ index + 1 }}</td>
           <td>{{ asignatura.asginatura }}</td>
           <td class="capitalize">{{ asignatura.anio }}</td>
+          <td class="capitalize">{{ asignatura.tipo }}</td>
           <td>
             <button
               class="bg-green-600 hover:bg-green-800 text-white py-2 px-4 rounded-lg"
@@ -47,6 +49,8 @@ import { onMounted } from "vue";
 const alumnoStore = useAlumnoStore();
 
 onMounted(async () => {
-  await alumnoStore.cargarAsignaturas();
+  console.log(await alumnoStore.cargarAsignaturas());
+
+  const asignaturas = await alumnoStore.cargarAsignaturas();
 });
 </script>

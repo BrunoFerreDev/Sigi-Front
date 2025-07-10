@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="max-w-8xl mx-auto w-full max-h-[750px] flex flex-col py-5 px-2 overflow-auto"
-  >
+  <div class="max-w-7xl mx-auto w-full flex flex-col h-fit py-5 px-2">
     {{ materiasFiltradas }}
     <div class="flex justify-center items-center mx-auto" v-if="loading">
       <Loader />
@@ -11,7 +9,7 @@
         <h2 class="text-2xl font-bold">Plan de Estudio y sus Condiciones</h2>
       </div>
       <div class="flex flex-col" v-if="materiasMostradas.length > 0">
-        <table class="w-full mx-auto mt-4">
+        <table class="w-full mx-auto mt-4 max-h-[300px]">
           <thead>
             <tr>
               <th>#</th>
@@ -25,7 +23,7 @@
             v-if="materiasMostradas.length > 0"
             v-for="materia in materias"
             :key="materia.id"
-            class=""
+            class="hover:bg-gray-200  overflow-auto"
           >
             <tr class="uppercase text-sm">
               <td class="w-[70px]">{{ materia.id }}</td>

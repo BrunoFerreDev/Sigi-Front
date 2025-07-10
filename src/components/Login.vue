@@ -32,7 +32,7 @@ export default {
   name: "Login",
   methods: {
     login() {
-      console.log("login");
+      ("login");
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
@@ -54,7 +54,7 @@ export default {
         .then((response) => response.json())
         .then((result) =>{
           if(result){
-            console.log(result);
+            (result);
             sessionStorage.setItem("token", result.jwt);
             window.location.href = "/cuenta";
           }

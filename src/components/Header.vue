@@ -1,42 +1,22 @@
 <template>
   <header class="header text-xl font-b shadow py-4 mx-2">
     <div class="header-content flex items-center">
-      {{ getPersona }}
       <form action="#" class="flex justify-between w-full items-center">
         <div class="hidden md:flex relative text-3xl pl-5 text-bold">
           {{ dynamicHeaderText }}
         </div>
-        <!-- <div class="flex md:hidden">
-          <select
-            class="h-[40px] m:hidden text-md text-black border-gray-200 rounded-lg px-2"
-          >
-            <option>Bienvenido al sistema</option>
-            <option @click.prevent="location.href = '/cursando'">
-              Cursando
-            </option>
-            <option @click.prevent="location.href = '/materias-aprobadas'">
-              Aprobadas
-            </option>
-            <option @click.prevent="location.href = '/regulares'">
-              Regulares
-            </option>
-            <option @click.prevent="location.href = '/finales'">Finales</option>
-            <option @click.prevent="location.href = '/titulo'">Titulo</option>
-            <option @click.prevent="location.href = '/alumno-regular'">
-              Alumno Regular
-            </option>
-            <option @click.prevent="location.href = '/plan-estudio'">
-              Plan de Estudio
-            </option>
-            <option @click.prevent="location.href = '/cuenta'">Cuenta</option>
-            <option @click.prevent="router.push('#')">Cerrar Sesion</option>
-          </select>
-        </div> -->
-        <div class="flex flex-col text-md capitalize px-2" v-if="isLogin">
+        <div
+          class="flex flex-col text-md capitalize px-2"
+          v-if="isLogin && persona.length > 0"
+        >
           <span>{{ persona.nombre + " " + persona.apellido }}</span>
           <span class="text-sm uppercase text-gray-200">{{
             persona.email
           }}</span>
+        </div>
+        <div class="flex flex-col text-md capitalize px-2" v-else>
+          <span>Usuario</span>
+          <span class="text-sm uppercase text-gray-200">Sin sesión iniciada</span>
         </div>
       </form>
     </div>
@@ -52,8 +32,10 @@ export default {
       isLogin: false,
     };
   },
+  created() {
+    this.getPersona();
+  },
   computed: {
-    getPersona() {},
     dynamicHeaderText() {
       // Mapea las rutas a los textos deseados
       switch (this.$route.path) {
@@ -78,6 +60,25 @@ export default {
         default:
           return "Bienvenido"; // Un valor por defecto si la ruta no coincide
       }
+    },
+  },
+  methods: {
+    getPersona() {
+      axios
+        .get("http://localhost:8080/personas/me", {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("jwt"),
+          },
+        })
+        .then((res) => {
+          this.persona = res.data;
+          console.log(this.persona);
+          this.isLogin = true;
+        })
+        .catch((error) => {})
+        .finally(() => {
+          this.isLogin = true;
+        });
     },
   },
 };

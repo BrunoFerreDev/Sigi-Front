@@ -23,3 +23,9 @@ export const getDisponibles = () =>
       Authorization: "Bearer " + sessionStorage.getItem("jwt"),
     },
   });
+  export const getPersona= ()=>
+  api_url.get("/personas/me", {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("jwt"),
+    },
+  });

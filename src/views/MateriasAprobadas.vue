@@ -70,12 +70,12 @@ export default {
         axios
           .request(config)
           .then((response) => {
-            console.log(JSON.stringify(response.data));
+            (JSON.stringify(response.data));
             this.asignaturas = response.data;
-            console.log(this.asignaturas);
+            (this.asignaturas);
           })
           .catch((error) => {
-            console.log(error);
+            (error);
           })
           .finally(() => {
             this.loading = false;

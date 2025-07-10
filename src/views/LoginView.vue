@@ -1,5 +1,6 @@
 <template>
-  <div class="flex mx-auto items-center justify-center m-2 h-full">
+  <div class="flex flex-col justify-start gap-8 mx-auto items-center h-full">
+    <h2 class="text-2xl font-bold mt-5">Iniciar Sesión</h2>
     <form class="form" @submit.prevent="iniciarSesion">
       <div class="flex-column">
         <label>Nombre de Usuario </label>
@@ -63,18 +64,20 @@ const dni = ref("");
 const email = ref("");
 const error = ref("");
 
-const iniciarSesion = async () => { 
+const iniciarSesion = async () => {
   try {
-    console.log("login");
+    ("login");
     await authStore.iniciarSesion(
       username.value,
       password.value,
       dni.value,
       email.value
     );
-    router.push("/cuenta");
   } catch (e) {
     error.value = "Credenciales incorrectas";
+  } finally {
+    location.reload();
+    router.push("/cuenta");
   }
 };
 </script>
@@ -88,10 +91,6 @@ const iniciarSesion = async () => {
   padding: 30px;
   width: 450px;
   border-radius: 20px;
-}
-
-.form button {
-  align-self: flex-end;
 }
 
 .flex-column > label {
@@ -181,9 +180,5 @@ const iniciarSesion = async () => {
   background-color: white;
   cursor: pointer;
   transition: 0.2s ease-in-out;
-}
-
-.btn:hover {
-  border: 1px solid #2d79f3;
 }
 </style>

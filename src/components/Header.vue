@@ -1,5 +1,5 @@
 <template>
-  <header class="header text-xl font-b shadow py-4 mx-2">
+  <header class="header text-xl font-b shadow py-2 mx-2 h-[70px]">
     <div class="header-content flex items-center">
       <form action="#" class="flex justify-between w-full items-center">
         <div class="hidden md:flex relative text-3xl pl-5 text-bold">
@@ -7,7 +7,7 @@
         </div>
         <div
           class="flex flex-col text-md capitalize px-2"
-          v-if="isLogin && persona.length > 0"
+          v-if="isLogin && persona"
         >
           <span>{{ persona.nombre + " " + persona.apellido }}</span>
           <span class="text-sm uppercase text-gray-200">{{
@@ -16,7 +16,9 @@
         </div>
         <div class="flex flex-col text-md capitalize px-2" v-else>
           <span>Usuario</span>
-          <span class="text-sm uppercase text-gray-200">Sin sesión iniciada</span>
+          <span class="text-sm uppercase text-gray-200"
+            >Sin sesión iniciada</span
+          >
         </div>
       </form>
     </div>
@@ -72,7 +74,6 @@ export default {
         })
         .then((res) => {
           this.persona = res.data;
-          console.log(this.persona);
           this.isLogin = true;
         })
         .catch((error) => {})

@@ -46,7 +46,15 @@
 
       <div class="flex flex-row gap-5">
         <p class="mr-5 w-32">Estado:</p>
-        <p :class="persona.estado ? 'bg-green-200 rounded-md min-w-44 px-2' : 'bg-red-200 rounded-md min-w-44 px-2'">{{ persona.estado ? "Activo" : "Inactivo" }}</p>
+        <p
+          :class="
+            persona.estado
+              ? 'bg-green-200 rounded-md min-w-44 px-2'
+              : 'bg-red-200 rounded-md min-w-44 px-2'
+          "
+        >
+          {{ persona.estado ? "Activo" : "Inactivo" }}
+        </p>
       </div>
     </section>
   </div>
@@ -54,12 +62,9 @@
 
 <script>
 import axios from "axios";
-import Login from "../components/Login.vue";
 export default {
   name: "Cuenta",
-  components: {
-    Login,
-  },
+  components: {},
   data() {
     return {
       persona: [],
@@ -86,16 +91,16 @@ export default {
         axios
           .request(config)
           .then((response) => {
-            (JSON.stringify(response.data));
+            JSON.stringify(response.data);
             this.persona = response.data;
             this.loginF = false;
           })
           .catch((error) => {
-            (error);
+            error;
           })
           .finally(() => {
-            (sessionStorage.getItem("jwt"));
-            
+            sessionStorage.getItem("jwt");
+
             this.login = false;
           });
       }
@@ -103,4 +108,3 @@ export default {
   },
 };
 </script>
-

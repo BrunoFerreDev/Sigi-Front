@@ -69,11 +69,9 @@ export default {
         axios
           .request(config)
           .then((response) => {
-           console.log(response.data);
             this.asignaturas = response.data;
           })
-          .catch((error) => {
-          })
+          .catch((error) => {})
           .finally(() => {
             this.loading = false;
           });

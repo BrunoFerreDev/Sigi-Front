@@ -1,9 +1,11 @@
 <template>
-  <footer class="footer px-4 py-6 ">
+  <footer class="footer px-4 py-6 h-[70px]">
     <div class="footer-content">
-      <p class="text-sm text-gray-600 text-center">
+      <p class="text-sm text-gray-950 text-center">
         © C.E.P 62 {{ new Date().getFullYear() }}.
-        <a href="https://twitter.com/iaminos">creado por Bruno Ferreira</a>
+        <a href="https://ferreirabruno.netlify.app/" target="_blank" noopener
+          >creado por Bruno Ferreira</a
+        >
       </p>
     </div>
   </footer>

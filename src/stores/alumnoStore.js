@@ -18,24 +18,18 @@ export const useAlumnoStore = defineStore("alumno", {
     async cargarAsignaturas() {
       this.loading = true; // Empieza a cargar
       try {
-        const [cursando, aprobadas, regulares, disponibles] = await Promise.all([
-          getCursando(),
-          getAprobadas(),
-          getRegular(),
-          getDisponibles(),
-        ]);
+        const [cursando, aprobadas, regulares, disponibles] = await Promise.all(
+          [getCursando(), getAprobadas(), getRegular(), getDisponibles()]
+        );
         this.cursando = cursando.data;
         this.aprobadas = aprobadas.data;
         this.regulares = regulares.data;
         this.disponibles = disponibles.data;
-        (
-          "Asignaturas cargadas:",
+        "Asignaturas cargadas:",
           this.cursando,
           this.aprobadas,
           this.regulares,
-          this.disponibles
-        );
-        
+          this.disponibles;
       } catch (e) {
         console.error("Error cargando asignaturas.", e);
       } finally {

@@ -8,7 +8,8 @@ import MateriasAprobadas from "./views/MateriasAprobadas.vue";
 import Titulo from "./views/Titulo.vue";
 import PlanEstudio from "./views/PlanEstudio.vue";
 import LoginView from "./views/LoginView.vue";
-import Disponibles from "./views/Disponibles.vue";
+import Disponibles from "./views/Disponibles.vue"; 
+import RegisterView from "./views/RegisterView.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -23,6 +24,7 @@ const router = createRouter({
     { path: "/cuenta", component: Cuenta },
     { path: "/plan-estudio", component: PlanEstudio },
     { path: "/disponibles", component: Disponibles },
+    { path: "/register", component: RegisterView },
   ],
 });
 export default router;

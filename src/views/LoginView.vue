@@ -55,15 +55,15 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/authStore";
+import RegisterForm from "../components/RegisterForm.vue";
 const router = useRouter();
 const authStore = useAuthStore();
-
 const username = ref("");
 const password = ref("");
 const dni = ref("");
 const email = ref("");
 const error = ref("");
-
+const registerInfo = ref(false);
 const iniciarSesion = async () => {
   try {
     ("login");
@@ -73,13 +73,12 @@ const iniciarSesion = async () => {
       dni.value,
       email.value
     );
+    router.push("/cuenta");
   } catch (e) {
     error.value = "Credenciales incorrectas";
-  } finally {
-    location.reload();
-    router.push("/cuenta");
   }
 };
+
 </script>
 <style scoped>
 /* From Uiverse.io by JohnnyCSilva */
